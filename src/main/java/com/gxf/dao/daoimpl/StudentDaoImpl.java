@@ -1,5 +1,6 @@
-package com.gxf.dao;
+package com.gxf.dao.daoimpl;
 
+import com.gxf.dao.StudentDao;
 import com.gxf.entity.Student;
 import com.gxf.mapper.StudentMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -44,10 +45,12 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     public void update(Student student) {
-
+        String sql = "update student set name = ? where NO = ?";
+        jdbcTemplate.update(sql, student.getName(), student.getNo());
     }
 
     public void delete(String no) {
-
+        String sql = "delete from student where No = ?";
+        jdbcTemplate.update(sql, no);
     }
 }
